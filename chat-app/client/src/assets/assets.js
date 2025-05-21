@@ -76,7 +76,7 @@ export const userDummyData = [
         "email": "test5@greatstack.dev",
         "fullName": "Richard Smith",
         "profilePic": profile_richard,
-        "bio": "Hi Everyone, I am Using QuickChat",
+        "bio": "Cant text, whatsapp only",
     }
 ]
 
