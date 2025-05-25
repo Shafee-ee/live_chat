@@ -5,7 +5,19 @@ import User from "../models/User.js";
 
 export const protectRoute = async (req, res, next) => {
     try {
-        const token = req.headers.token;
+
+        //remove chat gpt
+        const authHeader = req.headers.authorization;
+
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return res.json({ success: false, message: "Unauthorized: No token provided" });
+        }
+        //remove chat gpt
+
+
+        // const token = req.headers.token;
+
+        const token = authHeader.split(" ")[1];
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 

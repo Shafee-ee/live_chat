@@ -9,7 +9,7 @@ axios.defaults.baseURL = backendUrl;
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(() => localStorage.getItem("token"));
+    const [token, setToken] = useState(localStorage.getItem("token"));
     const [authUser, setAuthUser] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [socket, setSocket] = useState(null);
@@ -102,19 +102,17 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
 
-        const storedToken = localStorage.getItem("token");
-        if (storedToken && !token) {
-            setToken(storedToken);
-            return
-        }
+
         console.log("token in useEffect:", token)
         if (token) {
             axios.defaults.headers.common["token"] = token;
-            checkAuth();
-
         }
+        checkAuth();
 
-    }, [token])
+
+    },)
+
+
     const value = {
         axios,
         authUser,
@@ -134,3 +132,5 @@ export const AuthProvider = ({ children }) => {
 
     )
 }
+
+// issue with this file, fix it later
